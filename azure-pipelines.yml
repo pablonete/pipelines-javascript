@@ -8,11 +8,9 @@ steps:
   inputs:
     versionSpec: '8.x'
   
-- script: npm install
-
-- script: npm test
-
-- script: npm test-nyc
+- script: |
+    npm install
+    ./node_modules/.bin/nyc --reporter=cobertura --reporter=html ./node_modules/.bin/mocha tests/**/*.js --reporter mocha-junit-reporter --reporter-options mochaFile=./TEST-RESULTS.xml
 
 - task: PublishTestResults@2
   inputs:
